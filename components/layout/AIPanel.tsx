@@ -1,10 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Sparkles, Send, Target, FileText, AlertTriangle } from "lucide-react";
+import { X, Sparkles, Send } from "lucide-react";
 import { useAIPanelStore } from "@/stores/aiPanelStore";
 import { useState, useRef, useEffect } from "react";
 import { useAIStream } from "@/hooks/useAIStream";
+import { useParams } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const contextConfig = {
   global: {
@@ -30,7 +33,10 @@ const contextConfig = {
 };
 
 export function AIPanel() {
-  const { isOpen, setOpen, contextType } = useAIPanelStore();
+  const { isOpen, setOpen, contextType, contextId } = useAIPanelStore();
+  const params = useParams();
+  const projectId = params?.id as string;
+  
   const ctx = contextConfig[contextType as keyof typeof contextConfig] || contextConfig.global;
   const [messages, setMessages] = useState<any[]>([]);
   const [inputValue, setInputValue] = useState("");
@@ -47,6 +53,7 @@ export function AIPanel() {
           history[history.length - 1] = { ...last, content: content };
           return history;
         } else {
+          console.log('[AIPanel] Assistant response started');
           return [...history, { role: 'assistant', content: content }];
         }
       });
@@ -61,6 +68,7 @@ export function AIPanel() {
 
   const handleSend = async () => {
     if (!inputValue.trim() || isStreaming) return;
+    console.log('[AIPanel] Sending message:', inputValue);
     const userMsg = { role: 'user', content: inputValue };
     const newHistory = [...messages, userMsg];
     setMessages(newHistory);
@@ -68,7 +76,9 @@ export function AIPanel() {
     
     await startStream('/api/ai/chat', { 
       messages: newHistory,
-      contextType 
+      contextType,
+      contextId,
+      projectId
     });
   };
 
@@ -143,9 +153,10 @@ export function AIPanel() {
                      boxShadow: m.role === 'user'
                        ? '0 4px 12px rgba(124,108,242,0.25)'
                        : '0 2px 8px rgba(0,0,0,0.04)',
-                     whiteSpace: 'pre-wrap'
-                   }}>
-                     {m.content}
+                   }} className="prose prose-sm prose-slate dark:prose-invert max-w-none">
+                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                       {m.content}
+                     </ReactMarkdown>
                    </div>
                 </div>
               ))}

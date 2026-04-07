@@ -1,14 +1,16 @@
-import Groq from "groq-sdk";
+import { OpenRouter } from "@openrouter/sdk";
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
+const openrouter = new OpenRouter({
+  apiKey: process.env.OPENROUTER_API_KEY || "",
 });
 
 export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
+    console.log('[Lightning AI] SDK Request for prediction');
 
-    if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY.includes('your_')) {
+    // Fallback simulation mode
+    if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY.includes('your_')) {
       const simulations = [
          "Prioritize Developer Experience (DX) for this decision to prevent long-term maintenance rot.",
          "Ensure consistency by aligning the security protocol with the PRD steps instantly.",
@@ -19,25 +21,29 @@ export async function POST(req: Request) {
       return new Response(JSON.stringify({ insight: randomInsight }));
     }
 
-    const completion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: "system",
-          content: "You are a product strategist. Give a 1-sentence 'Lightning Insight' for a product decision. Focused, professional, and strategic (AIML5/6)."
-        },
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-      model: "llama-3.3-70b-specdec",
+    const response = await openrouter.chat.send({
+      chatRequest: {
+        model: "openrouter/free",
+        messages: [
+          {
+            role: "system",
+            content: "You are a product strategist. Give a 1-sentence 'Lightning Insight' for a product decision. Focused, professional, and strategic (AIML5/6)."
+          },
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      }
     });
 
-    console.log(`[AI SUCCESS] Groq Lightning Insight generated for: ${prompt.substring(0, 30)}...`);
-    return new Response(JSON.stringify({ insight: completion.choices[0]?.message?.content || "" }));
+    const insight = response.choices[0]?.message?.content || "";
+    console.log('[Lightning AI] Success');
+    
+    return new Response(JSON.stringify({ insight }));
 
   } catch (err: any) {
-    console.error("[GROQ ERROR] Lightning insight failed", err);
+    console.error("[Lightning AI FATAL ERROR]", err);
     return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
 }

@@ -120,7 +120,7 @@ export default function LandingPage() {
                   <div className="feature-icon">
                     <Icon size={16} style={{ color: "var(--accent)" }} />
                   </div>
-                  <h3 className="feature-title text-[--text-primary]">{f.title}</h3>
+                  <h3 className="feature-title">{f.title}</h3>
                   <p className="feature-desc">{f.desc}</p>
                 </div>
               );
@@ -140,7 +140,7 @@ export default function LandingPage() {
               <div key={s.step} className="step-card">
                 <div className="step-number">{s.step}</div>
                 {i < steps.length - 1 && <div className="step-connector" />}
-                <h3 className="step-title text-[--text-primary]">{s.title}</h3>
+                <h3 className="step-title">{s.title}</h3>
                 <p className="step-desc">{s.desc}</p>
               </div>
             ))}
@@ -156,7 +156,7 @@ export default function LandingPage() {
               <div className="module-tag" style={{ color: "var(--accent)", background: "var(--accent-muted)", borderColor: "var(--accent-border)" }}>
                 Decision Engine
               </div>
-              <h3 className="module-title text-[--text-primary]">Stop making decisions on gut feeling</h3>
+              <h3 className="module-title">Stop making decisions on gut feeling</h3>
               <p className="module-desc">
                 Structure options. Score trade-offs. Get explainable recommendations backed by AI reasoning — Impact, Effort, Risk, and Strategic Alignment visualized.
               </p>
@@ -171,7 +171,7 @@ export default function LandingPage() {
               <div className="module-tag" style={{ color: "var(--info)", background: "var(--info-muted)", borderColor: "var(--info-border)" }}>
                 Spec Engine
               </div>
-              <h3 className="module-title text-[--text-primary]">Specs that never go stale</h3>
+              <h3 className="module-title">Specs that never go stale</h3>
               <p className="module-desc">
                 Cross-validate PRDs, technical docs, and security specs in real-time. When a requirement in Document A conflicts with Document B, the AI surfaces it instantly.
               </p>

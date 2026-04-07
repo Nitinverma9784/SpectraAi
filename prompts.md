@@ -1,4 +1,3 @@
-Here's your ultra-detailed prompt for SpectraAI using OpenRouter free models:
 
 ---
 
@@ -37,33 +36,32 @@ Build **SpectraAI**, a production-ready full-stack web application that solves t
 
 ---
 
-## DESIGN SYSTEM — SLEEK DARK MINIMALISM
+## DESIGN SYSTEM — SOFT LUX / PASTEL MINIMALISM
 
 ### Color Tokens (globals.css)
 ```css
 :root {
-  --bg-base: #07070E;
-  --bg-surface: #0F0F1A;
-  --bg-elevated: #16162A;
-  --bg-hover: #1E1E30;
-  --border-subtle: #1F1F35;
-  --border-default: #2A2A45;
-  --border-strong: #3D3D60;
-  --accent: #7C6FE0;
-  --accent-hover: #9487EF;
-  --accent-muted: #7C6FE015;
-  --accent-soft: #7C6FE030;
-  --success: #22C55E;
-  --success-muted: #22C55E15;
+  --bg-base: #F8FAFF;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EEF2FF;
+  --bg-hover: #E8EDFF;
+  --bg-selected: #DDE5FF;
+  --border-subtle: rgba(124, 108, 242, 0.08);
+  --border-default: rgba(124, 108, 242, 0.15);
+  --border-strong: rgba(124, 108, 242, 0.28);
+  --accent: #7C6CF2;
+  --accent-hover: #6a59e0;
+  --accent-muted: rgba(124, 108, 242, 0.08);
+  --accent-soft: rgba(124, 108, 242, 0.14);
+  --accent-border: rgba(124, 108, 242, 0.20);
+  --success: #10B981;
   --warning: #F59E0B;
-  --warning-muted: #F59E0B15;
   --danger: #EF4444;
-  --danger-muted: #EF444415;
   --info: #38BDF8;
-  --text-primary: #EDEDF5;
-  --text-secondary: #8888A8;
-  --text-muted: #44445A;
-  --text-inverse: #07070E;
+  --text-primary: #1E293B;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --text-inverse: #FFFFFF;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
