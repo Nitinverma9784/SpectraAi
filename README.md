@@ -12,13 +12,13 @@
 
 SpectraAI was built to address two fundamental gaps in modern product management:
 
-### 1. AIML5: Decision Intelligence & Trade-off Reasoning
-**The Problem:** Product teams often make critical decisions based on "gut feeling" or messy Notion tables, leading to expensive rework when trade-offs aren't documented.
-**The Solution:** A structured GenAI reasoning engine that evaluates competing options against project-specific constraints (Cost, Time, Scalability, Risk) and generates an auditable, explainable logic trail.
+### AIML5: GenAI-Powered Product Decision & Trade-off Intelligence System
+**The Problem:** Product teams lack a system that can reason through competing product decisions, constraints, and trade-offs during ideation and design. Existing GenAI tools generate content but do not provide structured, explainable decision logic for prioritization, architectural choices, or scope definition.
+**The Solution:** A GenAI-powered decision intelligence platform that evaluates alternative product options, documents trade-offs, explains prioritization logic, and supports transparent, repeatable product decision-making from ideation to implementation.
 
-### 2. AIML6: Adaptive Specification Engine
-**The Problem:** Specifications (PRDs, Technical Docs) are static; they "rot" the moment a decision changes or a new requirement is added. Conflict detection is manual and error-prone.
-**The Solution:** A continuous synchronization loop where AI cross-references all specification artifacts in real-time. If Document A (Security) contradicts Document B (UX), SpectraAI flags it and proposes a resolution strategy.
+### AIML6: GenAI-Driven Adaptive Product Specification Engine
+**The Problem:** Product specifications become inconsistent and outdated as requirements evolve due to feedback, technical discoveries, or market changes. There is no adaptive system that continuously validates and synchronizes product documents across iterations.
+**The Solution:** A GenAI-driven adaptive specification engine that dynamically updates product requirements, validates consistency across artifacts, identifies gaps and conflicts, and produces continuously aligned, implementation-ready product documentation.
 
 ---
 
