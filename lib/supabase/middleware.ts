@@ -49,7 +49,7 @@ export async function updateSession(request: NextRequest) {
     const redirectResponse = NextResponse.redirect(url)
     // Transfer cookies to the redirect response
     supabaseResponse.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie.options)
+      redirectResponse.cookies.set(cookie)
     })
     return redirectResponse
   }
@@ -60,7 +60,7 @@ export async function updateSession(request: NextRequest) {
     const redirectResponse = NextResponse.redirect(url)
     // Transfer cookies to the redirect response
     supabaseResponse.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie.options)
+      redirectResponse.cookies.set(cookie)
     })
     return redirectResponse
   }
