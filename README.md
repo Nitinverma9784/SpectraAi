@@ -14,10 +14,12 @@ SpectraAI was built to address two fundamental gaps in modern product management
 
 ### AIML5: GenAI-Powered Product Decision & Trade-off Intelligence System
 **The Problem:** Product teams lack a system that can reason through competing product decisions, constraints, and trade-offs during ideation and design. Existing GenAI tools generate content but do not provide structured, explainable decision logic for prioritization, architectural choices, or scope definition.
+
 **The Solution:** A GenAI-powered decision intelligence platform that evaluates alternative product options, documents trade-offs, explains prioritization logic, and supports transparent, repeatable product decision-making from ideation to implementation.
 
 ### AIML6: GenAI-Driven Adaptive Product Specification Engine
 **The Problem:** Product specifications become inconsistent and outdated as requirements evolve due to feedback, technical discoveries, or market changes. There is no adaptive system that continuously validates and synchronizes product documents across iterations.
+
 **The Solution:** A GenAI-driven adaptive specification engine that dynamically updates product requirements, validates consistency across artifacts, identifies gaps and conflicts, and produces continuously aligned, implementation-ready product documentation.
 
 ---
