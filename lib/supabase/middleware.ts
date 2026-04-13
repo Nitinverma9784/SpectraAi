@@ -47,10 +47,13 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     const redirectResponse = NextResponse.redirect(url)
-    // Transfer cookies to the redirect response
-    supabaseResponse.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie)
-    })
+    
+    // Manual transfer of cookies to avoid TypeScript errors and ensure persistence
+    const cookies = supabaseResponse.cookies.getAll()
+    for (const cookie of cookies) {
+      redirectResponse.cookies.set(cookie.name, cookie.value)
+    }
+    
     return redirectResponse
   }
 
@@ -58,10 +61,13 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
     const redirectResponse = NextResponse.redirect(url)
-    // Transfer cookies to the redirect response
-    supabaseResponse.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie)
-    })
+    
+    // Manual transfer of cookies to avoid TypeScript errors and ensure persistence
+    const cookies = supabaseResponse.cookies.getAll()
+    for (const cookie of cookies) {
+      redirectResponse.cookies.set(cookie.name, cookie.value)
+    }
+    
     return redirectResponse
   }
 
