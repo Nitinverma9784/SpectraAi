@@ -65,8 +65,15 @@ function AuthCard({ title, subtitle, children }: { title: string; subtitle: stri
   );
 }
 
-export default function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
+import { redirect } from "next/navigation";
+
+export default function LoginPage({ searchParams }: { searchParams: { error?: string; code?: string } }) {
+  if (searchParams?.code) {
+    redirect(`/auth/callback?code=${searchParams.code}`)
+  }
+
   return (
+
     <AuthCard title="Welcome back" subtitle="Sign in to continue to SpectraAI">
       {searchParams?.error && (
         <div

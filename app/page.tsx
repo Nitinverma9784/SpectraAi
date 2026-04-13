@@ -28,8 +28,15 @@ const steps = [
   { step: "04", title: "Scan for conflicts", desc: "AI cross-validates documents and surfaces contradictions before they rot." },
 ];
 
-export default function LandingPage() {
+import { redirect } from "next/navigation";
+
+export default function LandingPage({ searchParams }: { searchParams: { code?: string } }) {
+  if (searchParams?.code) {
+    redirect(`/auth/callback?code=${searchParams.code}`)
+  }
+
   return (
+
     <div style={{ minHeight: "100vh", background: "var(--bg-base)", color: "var(--text-primary)", overflowX: "hidden" }}>
 
       {/* ── NAVBAR ──────────────────────────────────────────── */}
