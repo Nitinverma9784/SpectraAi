@@ -12,21 +12,12 @@ export async function GET(request: Request) {
     const supabase = await createClient()
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     
-    if (error) {
-      console.error('Auth callback error:', error.message)
-      return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`)
-    }
-
-    const forwardedHost = request.headers.get('x-forwarded-host') 
-    const isLocalEnv = process.env.NODE_ENV === 'development'
-
-    if (isLocalEnv) {
-      return NextResponse.redirect(`${origin}${next}`)
-    } else if (forwardedHost) {
-      return NextResponse.redirect(`https://${forwardedHost}${next}`)
-    } else {
+    if (!error) {
       return NextResponse.redirect(`${origin}${next}`)
     }
+    
+    console.error('Auth callback error:', error.message)
+    return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error.message)}`)
   }
 
   // If no code, return a generic error
