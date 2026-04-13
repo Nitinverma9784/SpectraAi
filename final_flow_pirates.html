@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpectraAI | Final Architectural Flow - Team Prompt Pirates</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #FFFFFF;
+            --accent: #7C6CF2;
+            --text-primary: #1E293B;
+            --text-secondary: #475569;
+            --border: #E2E8F0;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
+        body { margin: 0; padding: 0; background: #F1F5F9; color: var(--text-primary); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+        /* Master Container */
+        .page { background: white; width: 210mm; min-height: 297mm; padding: 20mm; margin: 20px auto; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-radius: 8px; position: relative; }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 60px; border-bottom: 2px solid var(--accent); padding-bottom: 30px; }
+        .team-tag { color: var(--accent); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 12px; margin-bottom: 10px; display: block; }
+        h1 { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 52px; font-weight: 400; margin: 0; color: var(--text-primary); }
+        .subtitle { font-size: 16px; color: var(--text-secondary); margin-top: 10px; }
+
+        /* Content */
+        .section { margin-bottom: 50px; page-break-inside: avoid; }
+        h2 { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 32px; color: var(--accent); margin-bottom: 20px; }
+        h3 { font-size: 20px; font-weight: 600; margin: 25px 0 10px 0; }
+        p { margin: 0 0 15px 0; color: var(--text-secondary);- font-size: 14px; }
+        strong { color: var(--text-primary); }
+
+        /* High-End Image Frame */
+        .img-frame { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 20px 0; display: block; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        img { width: 100%; height: auto; display: block; }
+
+        /* Controls */
+        .controls { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(255,255,255,0.9); padding: 15px 30px; border-radius: 99px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); backdrop-filter: blur(8px); display: flex; gap: 20px; border: 1px solid var(--accent); }
+        .btn { padding: 12px 24px; border-radius: 99px; font-weight: 700; cursor: pointer; border: none; font-size: 14px; transition: 0.2s; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-secondary { background: #E2E8F0; color: var(--text-primary); }
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        /* Print Settings */
+        @media print {
+            body { background: white; margin: 0; padding: 0; }
+            .page { margin: 0; box-shadow: none; width: 100%; border-radius: 0; padding: 10mm; }
+            .controls { display: none; }
+        }
+    </style>
+</head>
+<body id="master-body">
+
+    <div class="controls">
+        <button class="btn btn-primary" onclick="generatePDF()">🚀 Generate PDF (Auto)</button>
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ Manual Print (Fallback)</button>
+    </div>
+
+    <div class="page" id="pdf-target">
+        <div class="header">
+            <span class="team-tag">Team Prompt Pirates Present</span>
+            <h1>SpectraAI: Closed-Loop Reasoning</h1>
+            <p class="subtitle">Architectural Flow & Problem-Solving Strategy Documentation</p>
+        </div>
+
+        <div class="section">
+            <h2>1. Strategic Vision</h2>
+            <h3>The Problem</h3>
+            <p>Product teams face "Decision Decay"—scattered logic and rotting specifications that disconnect the **Why** from the **How**.</p>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/3efc4848-108c-40cf-ba5c-d80c1e93b8af" alt="Landing">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Entry & Context</h2>
+            <h3>Authentication & Global Health</h3>
+            <p><strong>The Flow:</strong> Secure OAuth access leads to a Global Dashboard where every project displays a real-time **Consistency Score**.</p>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/5775ed35-ebff-4182-b0c1-603d25a9b7c3" alt="Auth 1">
+            </div>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/94ac89ff-b5ea-4238-9f33-359e9fb228d9" alt="Auth 2">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Decision Intelligence</h2>
+            <h3>Wizard & Matrix Analysis</h3>
+            <p><strong>The Flow:</strong> Instead of intuitive guesses, logic is structured through a multi-step Wizard that visualizes trade-offs via a **Radar Matrix**.</p>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/bf2558ed-c45f-479e-b92a-357161b3faa2" alt="Wizard">
+            </div>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/bc0f0ece-da06-46c8-bcfd-bfe50c93de8d" alt="Matrix">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. AI Verdict</h2>
+            <h3>Deep Reasoning with DeepSeek</h3>
+            <p><strong>The Flow:</strong> The AI provides a weighted recommendation based on constraints, uncovering hidden technical assumptions.</p>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/091ac4a0-4dff-4916-b68f-873b30fd7169" alt="Verdict">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Adaptive Specifications</h2>
+            <h3>Semantic Conflict Scanning</h3>
+            <p><strong>The Flow:</strong> Every PRD requirement is linked to a Decision. The scanner audits the PRD against the architecture in real-time.</p>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/5b180ffa-daee-44b3-87ec-9389b45fe77b" alt="Editor">
+            </div>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/bbf3e85f-4db5-4246-988c-7822b58498fe" alt="Scanner">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Spectra Assistant</h2>
+            <h3>Context-Aware Strategy Support</h3>
+            <p><strong>The Flow:</strong> A sidebar that bridges the entire project history, answering complex strategic questions about feature trade-offs.</p>
+            <div class="img-frame">
+                <img src="https://github.com/user-attachments/assets/b5ce2e01-a2e4-4bb1-91a9-6d865f543c65" alt="Assistant">
+            </div>
+        </div>
+
+        <div style="text-align: center; color: #94A3B8; font-size: 12px; margin-top: 40px;">
+            ✦ PROMPT PIRATES | SpectraAI Architectural Authority | 2026
+        </div>
+    </div>
+
+    <script>
+        async function convertToDataURL(url) {
+            try {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+            } catch (e) {
+                console.error("CORS Error on image:", url);
+                return url; // Fallback to raw URL
+            }
+        }
+
+        async function generatePDF() {
+            const btn = document.querySelector('.btn-primary');
+            const target = document.getElementById('pdf-target');
+            btn.innerHTML = "Converting Images to DataURLs...";
+            btn.disabled = true;
+
+            // Step 1: Force convert all images to Base64 to bypass CORS issues in pdf library
+            const imgs = target.querySelectorAll('img');
+            for(let img of imgs) {
+                const originalSrc = img.src;
+                // Add timestamp to break cache
+                const dataUrl = await convertToDataURL(originalSrc + "?v=" + Date.now());
+                img.src = dataUrl;
+            }
+
+            btn.innerHTML = "Rendering PDF Logic...";
+
+            const options = {
+                margin: 0,
+                filename: 'SpectraAI_Strategy_PromptPirates.pdf',
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { 
+                    scale: 3, 
+                    useCORS: true, 
+                    letterRendering: true,
+                    backgroundColor: '#ffffff'
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            try {
+                await html2pdf().set(options).from(target).save();
+                btn.innerHTML = "Success! (Check Downloads)";
+            } catch (err) {
+                console.error(err);
+                alert("PDF engine failed. Using Manual Print Fallback.");
+                window.print();
+            } finally {
+                setTimeout(() => {
+                    btn.innerHTML = "🚀 Generate PDF (Auto)";
+                    btn.disabled = false;
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

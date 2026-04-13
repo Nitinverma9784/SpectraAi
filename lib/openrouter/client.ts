@@ -27,10 +27,14 @@ export async function callOpenRouter({
   });
 
   if (!res.ok) {
+    const errorText = await res.text();
+    console.error(`OpenRouter API error for model ${model}: ${res.status} ${res.statusText}`, errorText);
+    
     if (model !== MODELS.fallback) {
+      console.log(`Trying fallback model ${MODELS.fallback}`);
       return callOpenRouter({ model: MODELS.fallback, messages, stream, temperature, max_tokens });
     }
-    throw new Error(`OpenRouter API failed: ${res.statusText}`);
+    throw new Error(`OpenRouter API failed: ${res.statusText} (${res.status})`);
   }
 
   return res;

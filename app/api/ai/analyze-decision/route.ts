@@ -6,10 +6,12 @@ import { createClient } from '@/lib/supabase/server'
 export async function POST(req: Request) {
   try {
     const { decisionId } = await req.json()
+    console.log(`[AI DEBUG] Received request for decisionId: ${decisionId}`)
     
     const supabase = await createClient()
     const { data: decision } = await supabase.from('decisions').select('*').eq('id', decisionId).single()
     const { data: options } = await supabase.from('decision_options').select('*').eq('decision_id', decisionId)
+    console.log(`[AI DEBUG] Fetched decision: ${decision?.title}, options count: ${options?.length}`)
 
     if (!decision || !options) {
       console.error(`[AI ERROR] Decision ${decisionId} not found.`);
@@ -18,7 +20,7 @@ export async function POST(req: Request) {
 
     const prompt = DECISION_ANALYSIS_PROMPT(decision, options)
     
-    if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY.includes('your_')) {
+    if (!process.env.OPENROUTER_API_KEY || !process.env.OPENROUTER_API_KEY.startsWith('sk-or-v1') || process.env.OPENROUTER_API_KEY.length < 20) {
       const encoder = new TextEncoder()
       const stream = new ReadableStream({
         async start(controller) {
@@ -68,7 +70,7 @@ Based on a holistic evaluation of the specified constraints (Cost, Time, Scalabi
       headers: { 'Content-Type': 'text/event-stream' }
     })
   } catch (err: any) {
-    console.error(`[AI ERROR] Analysis failed: ${err.message}`);
+    console.error(`[AI ERROR] Analysis failed: ${err.message}`, err.stack);
     return new Response(JSON.stringify({ error: err.message }), { status: 500 })
   }
 }

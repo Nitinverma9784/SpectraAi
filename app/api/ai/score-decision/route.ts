@@ -30,7 +30,7 @@ Return ONLY VALID JSON matching this schema:
 
     const userPrompt = `Decision: ${decision.title}\nContext: ${decision.context}\nOptions:\n${options.map(o => `- ${o.title}: ${o.description}`).join('\n')}`
 
-    if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY.includes('your_')) {
+    if (!process.env.OPENROUTER_API_KEY || !process.env.OPENROUTER_API_KEY.startsWith('sk-or-v1') || process.env.OPENROUTER_API_KEY.length < 20) {
       const mockResult = {
         options_analysis: options.map(o => ({
           option_title: o.title,

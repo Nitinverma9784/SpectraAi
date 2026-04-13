@@ -60,7 +60,7 @@ export async function runScan(projectId: string) {
   try {
     let resultJson;
 
-    if (!process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY.includes('your_')) {
+    if (!process.env.OPENROUTER_API_KEY || !process.env.OPENROUTER_API_KEY.startsWith('sk-or-v1') || process.env.OPENROUTER_API_KEY.length < 20) {
         // SIMULATION MODE (AIML6 Logic)
         const isSecurityVsUX = specA.title.toLowerCase().includes('ux') || specB.title.toLowerCase().includes('security')
         

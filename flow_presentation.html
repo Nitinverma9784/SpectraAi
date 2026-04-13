@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpectraAI | Product Flow & Architectural Strategy</title>
+    <!-- Google Fonts: Instrument Serif & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- html2pdf.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --bg-base: #F8FAFF;
+            --bg-surface: #FFFFFF;
+            --accent: #7C6CF2;
+            --text-primary: #1E293B;
+            --text-secondary: #475569;
+            --border: rgba(124, 108, 242, 0.12);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: var(--bg-surface); /* Ensure white background for PDF */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 48px;
+            font-weight: 400;
+            margin: 0 0 16px 0;
+            background: linear-gradient(135deg, #7C6CF2 0%, #38BDF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+
+        .btn-download {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 99px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(124, 108, 242, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(124, 108, 242, 0.4);
+        }
+
+        .section {
+            margin-bottom: 80px;
+            page-break-inside: avoid;
+        }
+
+        .part-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        h2 {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 32px 0 16px 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .image-container {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(124, 108, 242, 0.06);
+            margin: 30px 0;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .footer {
+            margin-top: 100px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        @media print {
+            .controls { display: none; }
+            body { background: white; }
+            .container { box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="btn-download" id="download-btn" onclick="downloadPDF()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download PDF
+        </button>
+    </div>
+
+    <div class="container" id="pdf-content">
+        <div class="header">
+            <span class="part-label">Architectural Strategy | By Team Prompt Pirates</span>
+            <h1>SpectraAI: Closing the Loop</h1>
+            <p class="subtitle">A deep dive into the problem-solving flow of our decision intelligence and adaptive specification engine.</p>
+        </div>
+
+        <!-- PART 1 -->
+        <div class="section">
+            <span class="part-label">Part 1</span>
+            <h2>Strategic Vision & Identification</h2>
+            <h3>1. Landing Page — Surfacing the Problem</h3>
+            <p><strong>The Problem:</strong> Product teams struggle with scattered, unrecorded decisions and specification documents that rot the moment they are written.</p>
+            <p><strong>The Solution:</strong> SpectraAI unifies Decision Intelligence and Adaptive Specs into a single loop.</p>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/3efc4848-108c-40cf-ba5c-d80c1e93b8af?v=pdf" crossorigin="anonymous">
+            </div>
+        </div>
+
+        <!-- PART 2 -->
+        <div class="section">
+            <span class="part-label">Part 2</span>
+            <h2>Controlled Entry & Organization</h2>
+            <h3>2. Authentication — Secure Workspace</h3>
+            <p><strong>Flow:</strong> Google OAuth identifies the user and provides immediate access.</p>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/5775ed35-ebff-4182-b0c1-603d25a9b7c3?v=pdf" crossorigin="anonymous">
+            </div>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/94ac89ff-b5ea-4238-9f33-359e9fb228d9?v=pdf" crossorigin="anonymous">
+            </div>
+            <h3>3. Global Dashboard — Visibility & Health</h3>
+            <p><strong>The Flow:</strong> High-level view of product health across projects.</p>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/0ef809c5-44d5-4f6f-9783-35d3b13b9606?v=pdf" crossorigin="anonymous">
+            </div>
+        </div>
+
+        <!-- PART 3 -->
+        <div class="section">
+            <span class="part-label">Part 3</span>
+            <h2>Decision Intelligence (AIML5)</h2>
+            <h3>4. Decision Wizard — Context</h3>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/bf2558ed-c45f-479e-b92a-357161b3faa2?v=pdf" crossorigin="anonymous">
+            </div>
+            <h3>5. Multi-Option Wizard — Eliminating Bias</h3>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/be8626ea-0f98-4ccb-9ffb-2899dd9aa260?v=pdf" crossorigin="anonymous">
+            </div>
+            <h3>6. Trade-off Matrix — Radar Matrix</h3>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/bc0f0ece-da06-46c8-bcfd-bfe50c93de8d?v=pdf" crossorigin="anonymous">
+            </div>
+            <h3>7. Deep Reasoning — AI-Driven Verdict</h3>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/091ac4a0-4dff-4916-b68f-873b30fd7169?v=pdf" crossorigin="anonymous">
+            </div>
+        </div>
+
+        <!-- PART 4 -->
+        <div class="section">
+            <span class="part-label">Part 4</span>
+            <h2>Adaptive Specs (AIML6)</h2>
+            <h3>8. Spec Editor — Logic Bridge</h3>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/5b180ffa-daee-44b3-87ec-9389b45fe77b?v=pdf" crossorigin="anonymous">
+            </div>
+            <h3>9. Conflict Scanner — Semantic Audit</h3>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/bbf3e85f-4db5-4246-988c-7822b58498fe?v=pdf" crossorigin="anonymous">
+            </div>
+        </div>
+
+        <!-- PART 5 -->
+        <div class="section">
+            <span class="part-label">Part 5</span>
+            <h2>Spectra Assistant</h2>
+            <h3>10. Contextual Reasoning Sidebar</h3>
+            <div class="image-container">
+                <img src="https://github.com/user-attachments/assets/b5ce2e01-a2e4-4bb1-91a9-6d865f543c65?v=pdf" crossorigin="anonymous">
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Developed with ✦ by Team Prompt Pirates | 2026</p>
+        </div>
+    </div>
+
+    <script>
+        async function downloadPDF() {
+            const btn = document.getElementById('download-btn');
+            const element = document.getElementById('pdf-content');
+            
+            btn.innerHTML = "Preparing PDF...";
+            btn.disabled = true;
+
+            // Give the browser a moment to settle
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            const options = {
+                margin: 10,
+                filename: 'SpectraAI_Flow_PromptPirates.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2, 
+                    useCORS: true, 
+                    logging: false,
+                    backgroundColor: '#ffffff',
+                    letterRendering: true
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            try {
+                await html2pdf().set(options).from(element).save();
+            } catch (err) {
+                console.error("PDF Export failed:", err);
+                alert("Failed to generate PDF. Trying fallback method...");
+                window.print();
+            } finally {
+                btn.innerHTML = "Download PDF";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
