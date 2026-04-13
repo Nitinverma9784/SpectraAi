@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { getURL } from '@/lib/auth-utils'
 
 export async function login(formData: FormData) {
   const supabase = await createClient()
@@ -44,19 +45,21 @@ export async function signup(formData: FormData) {
   redirect('/dashboard')
 }
 
+
 export async function signInWithGoogle() {
   const supabase = await createClient()
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
+      redirectTo: `${getURL()}/auth/callback`,
     },
   })
 
   if (error) {
     return redirect('/login?error=' + error.message)
   }
+
   
   if (data.url) {
     redirect(data.url)
